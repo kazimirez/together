@@ -13,7 +13,6 @@ constants_3d = gencache.EnsureModule("{2CAF168C-7961-4B90-9DA2-701419BEEFE3}", 0
 #  Подключим описание интерфейсов API5
 api5 = gencache.EnsureModule("{0422828C-F174-495E-AC5D-D31014DBBE87}", 0, 1, 0)
 kompas_object = api5.KompasObject(Dispatch("Kompas.Application.5")._oleobj_.QueryInterface(api5.KompasObject.CLSID,pythoncom.IID_IDispatch))
-MH.iKompasObject = kompas_object
 
 #  Подключим описание интерфейсов API7
 api7 = gencache.EnsureModule("{69AC2981-37C0-4379-84FD-5DD2F3C0A520}", 0, 1, 0)
@@ -26,3 +25,8 @@ iDocument3D = kompas_object.ActiveDocument3D()
 
 
 main_lfn()
+
+propertyMng = api7.IPropertyMng(application)
+i = propertyMng.GetProperties(kompas_document)
+property = propertyMng.GetProperty(kompas_document, 3)
+print(property.Id)
