@@ -27,6 +27,11 @@ iDocument3D = kompas_object.ActiveDocument3D()
 main_lfn()
 
 propertyMng = api7.IPropertyMng(application)
-i = propertyMng.GetProperties(kompas_document)
-property = propertyMng.GetProperty(kompas_document, 3)
-print(property.Id)
+propertyKeeper = api7.IPropertyKeeper(kompas_document)
+
+i = 0
+for i in range (propertyMng.PropertyCount(kompas_document)):
+    property = propertyMng.GetProperty(kompas_document, i)
+    print('\nИмя свойства: ', {property.Name}, '\nId свойства: ', {property.Id}, '\nЗначение свойства: ')
+    i += 1
+#{propertyKeeper.UniqueMetaObjectKey}
