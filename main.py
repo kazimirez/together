@@ -34,6 +34,6 @@ propertyKeeper = api7.IPropertyKeeper(part7)
 i = 0
 for i in range (propertyMng.PropertyCount(kompas_document)):
     property = propertyMng.GetProperty(kompas_document, i)
-    propertyVal = propertyKeeper.GetPropertyValue(property, "", True, True)
-    print('\nИмя свойства: ', property.Name, '\nId свойства: ', property.Id, '\nЗначение свойства: ', propertyVal[1])
+    propertyVal = propertyKeeper.GetPropertyValue(property, "", True, False)
+    print('\nИмя свойства: ', property.Name, '\nId свойства: ', property.Id, '\nЗначение свойства: ', propertyVal)
     i += 1
