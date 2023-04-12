@@ -30,15 +30,10 @@ part7 = kompas_document_3d.TopPart
 propertyMng = api7.IPropertyMng(application)
 propertyKeeper = api7.IPropertyKeeper(part7)
 
-property = propertyMng.GetProperty(kompas_document, 1)
-propertyVal = propertyKeeper.GetPropertyValue(property, "", True, True)
 
-print(propertyVal)
-
-'''i = 0
+i = 0
 for i in range (propertyMng.PropertyCount(kompas_document)):
     property = propertyMng.GetProperty(kompas_document, i)
     propertyVal = propertyKeeper.GetPropertyValue(property, "", True, True)
-    print('\nИмя свойства: ', {property.Name}, '\nId свойства: ', {property.Id}, '\nЗначение свойства: ', {propertyVal})
-    i += 1'''
-#{propertyKeeper.UniqueMetaObjectKey}
+    print('\nИмя свойства: ', property.Name, '\nId свойства: ', property.Id, '\nЗначение свойства: ', propertyVal[1])
+    i += 1
