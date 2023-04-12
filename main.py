@@ -24,14 +24,21 @@ kompas_document_3d = api7.IKompasDocument3D(kompas_document)
 iDocument3D = kompas_object.ActiveDocument3D()
 
 
+
 main_lfn()
-
+part7 = kompas_document_3d.TopPart
 propertyMng = api7.IPropertyMng(application)
-propertyKeeper = api7.IPropertyKeeper(kompas_document)
+propertyKeeper = api7.IPropertyKeeper(part7)
 
-i = 0
+property = propertyMng.GetProperty(kompas_document, 1)
+propertyVal = propertyKeeper.GetPropertyValue(property, "", True, True)
+
+print(propertyVal)
+
+'''i = 0
 for i in range (propertyMng.PropertyCount(kompas_document)):
     property = propertyMng.GetProperty(kompas_document, i)
-    print('\nИмя свойства: ', {property.Name}, '\nId свойства: ', {property.Id}, '\nЗначение свойства: ')
-    i += 1
+    propertyVal = propertyKeeper.GetPropertyValue(property, "", True, True)
+    print('\nИмя свойства: ', {property.Name}, '\nId свойства: ', {property.Id}, '\nЗначение свойства: ', {propertyVal})
+    i += 1'''
 #{propertyKeeper.UniqueMetaObjectKey}
