@@ -41,7 +41,10 @@ def smartRound(part_mass):
 
 print(smartRound(getPropertyValue("Масса")))
 
+
+#Дописать проверку на то, что модель является деталью
 #Дописать проверку на уже заполненную БЧ деталь
+#Дописать сохранение состояния и откат к не_БЧ детали
 Bch_Name = getPropertyValue ("Наименование") + "@/" + getPropertyValue ("Материал") + "@/" + "L = $m;$"
 #if Bch_Name
 setProperty("Форматы листов документа", "БЧ")
