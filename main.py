@@ -42,8 +42,8 @@ def smartRound(part_mass):
 print(smartRound(getPropertyValue("Масса")))
 
 #Дописать проверку на уже заполненную БЧ деталь
-'''Bch_Name = getPropertyValue ("Наименование") + "@/" + getPropertyValue ("Материал") + "@/" + "L = $m;$"
-if Bch_Name 
-    setProperty("Форматы листов документа", "БЧ")
-    setProperty("Наименование", Bch_Name)
-    setProperty("Примечание", smartRound(getPropertyValue("Масса")))'''
+Bch_Name = getPropertyValue ("Наименование") + "@/" + getPropertyValue ("Материал") + "@/" + "L = $m;$"
+#if Bch_Name
+setProperty("Форматы листов документа", "БЧ")
+setProperty("Наименование", Bch_Name)
+setProperty("Примечание", smartRound(getPropertyValue("Масса")))
