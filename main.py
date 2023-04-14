@@ -30,17 +30,17 @@ def getPropertyValue(propertyName):
 def smartRound(part_mass):
     if part_mass < 0.1:
         part_mass *= 1000
-        return round(part_mass, 1), " г"
+        return str(round(part_mass, 1)) + " г"
     elif 0.1 <= part_mass <= 10:
-        return round(part_mass, 2), " кг"
+        return str(round(part_mass, 2)) + " кг"
     elif 10 <= part_mass <= 100:
-        return round(part_mass, 1), " кг"
+        return str(round(part_mass, 1)) + " кг"
     else:
-        return round(part_mass, 0), " кг"
+        return str(round(part_mass, 0)) + " кг"
 
 
-x, y = smartRound(getPropertyValue("Масса"))
-print(x, y)
+y = smartRound(getPropertyValue("Масса"))
+print(y)
 
 '''note_name = round(getPropertyValue ("масса"), )
 
