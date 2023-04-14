@@ -1,3 +1,8 @@
-'''my data'''
+def replacer(number):
+    return str(number).replace('.', ',')
 
-print('kuku')
+
+inputnumber = input("enter a number: ")
+b = replacer(inputnumber)
+print(b)
+
