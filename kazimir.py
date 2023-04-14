@@ -1,8 +1,8 @@
 def replacer(number):
     return str(number).replace('.', ',')
 
-
-inputnumber = input("enter a number: ")
+#Знаешь как это ломает программу?
+'''inputnumber = input("enter a number: ")
 b = replacer(inputnumber)
-print(b)
+print(b)'''
 

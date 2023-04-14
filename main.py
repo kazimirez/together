@@ -1,4 +1,5 @@
 from leafan import *
+from kazimir import *
 
 api5, api7, kompas_document, kompas_object, application, kompas_document_3d = connectAPI()
 main_lfn()
@@ -30,17 +31,18 @@ def getPropertyValue(propertyName):
 def smartRound(part_mass):
     if part_mass < 0.1:
         part_mass *= 1000
-        return str(round(part_mass, 1)) + " г"
+        return replacer(round(part_mass, 1)) + " г"
     elif 0.1 <= part_mass <= 10:
-        return str(round(part_mass, 2)) + " кг"
+        return replacer(round(part_mass, 2)) + " кг"
     elif 10 <= part_mass <= 100:
-        return str(round(part_mass, 1)) + " кг"
+        return replacer(round(part_mass, 1)) + " кг"
     else:
-        return str(round(part_mass, 0)) + " кг"
+        return replacer(str(round(part_mass, 0)) + " кг")
 
+print(smartRound(getPropertyValue("Масса")))
 
 #Дописать проверку на уже заполненную БЧ деталь
-'''Bch_Name = getPropertyValue ("Наименование") + "@/" + getPropertyValue ("Материал") + "@/" + "L = $s;$"
+'''Bch_Name = getPropertyValue ("Наименование") + "@/" + getPropertyValue ("Материал") + "@/" + "L = $m;$"
 if Bch_Name 
     setProperty("Форматы листов документа", "БЧ")
     setProperty("Наименование", Bch_Name)
