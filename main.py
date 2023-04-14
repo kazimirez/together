@@ -39,13 +39,9 @@ def smartRound(part_mass):
         return str(round(part_mass, 0)) + " кг"
 
 
-y = smartRound(getPropertyValue("Масса"))
-print(y)
-
-'''note_name = round(getPropertyValue ("масса"), )
-
-Bch_Name = getPropertyValue ("Наименование") + "@/" + getPropertyValue ("Материал") + "@/" + "L = $s;$"
-
-
-setProperty("Форматы листов документа", "БЧ")
-setProperty("Наименование", Bch_Name)'''
+#Дописать проверку на уже заполненную БЧ деталь
+'''Bch_Name = getPropertyValue ("Наименование") + "@/" + getPropertyValue ("Материал") + "@/" + "L = $s;$"
+if Bch_Name 
+    setProperty("Форматы листов документа", "БЧ")
+    setProperty("Наименование", Bch_Name)
+    setProperty("Примечание", smartRound(getPropertyValue("Масса")))'''
