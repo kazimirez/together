@@ -1,5 +1,5 @@
 from leafan import *
-from kazimir import *
+#from kazimir import replacer
 
 api5, api7, kompas_document, kompas_object, application, kompas_document_3d = connectAPI()
 main_lfn()
@@ -9,17 +9,17 @@ propertyMng = api7.IPropertyMng(application)
 propertyKeeper = api7.IPropertyKeeper(part7)
 
 
-def setProperty(propertyName, value):
+def set_property(property_name, value):
     i = 0
     for i in range(propertyMng.PropertyCount(kompas_document)):
         property = propertyMng.GetProperty(kompas_document, i)
-        if property.Name == propertyName:
+        if property.Name == property_name:
             propertyKeeper.SetPropertyValue(property, value, True)
             return property
         i += 1
 
 
-def getPropertyValue(propertyName):
+def get_property_value(propertyName):
     i = 0
     for i in range(propertyMng.PropertyCount(kompas_document)):
         property = propertyMng.GetProperty(kompas_document, i)
@@ -28,25 +28,16 @@ def getPropertyValue(propertyName):
             return propertyVal[1]
 
 
-def smartRound(part_mass):
-    if part_mass < 0.1:
-        part_mass *= 1000
-        return replacer(str(round(part_mass, 1))) + " г"
-    elif 0.1 <= part_mass <= 10:
-        return replacer(str(round(part_mass, 2))) + " кг"
-    elif 10 <= part_mass <= 100:
-        return replacer(str(round(part_mass, 1))) + " кг"
-    else:
-        return replacer(str(round(part_mass, 0))) + " кг"
-
-print(smartRound(getPropertyValue("Масса")))
+print(smartRound(get_property_value("Масса")))
 
 
 #Дописать проверку на то, что модель является деталью
 #Дописать проверку на уже заполненную БЧ деталь
 #Дописать сохранение состояния и откат к не_БЧ детали
-Bch_Name = getPropertyValue ("Наименование") + "@/" + getPropertyValue ("Материал") + "@/" + "L = $m;$"
+#Дописать обработчик допусков
+#Дописать обработчик Квалитетов
+bche_name = get_property_value("Наименование") + "@/" + get_property_value("Материал") + "@/" + "L = 100$m+0,8;-1$"
 #if Bch_Name
-setProperty("Форматы листов документа", "БЧ")
-setProperty("Наименование", Bch_Name)
-setProperty("Примечание", smartRound(getPropertyValue("Масса")))
+set_property("Форматы листов документа", "БЧ")
+set_property("Наименование", bche_name)
+set_property("Примечание", smartRound(get_property_value("Масса")))

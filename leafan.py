@@ -1,5 +1,6 @@
 import pythoncom
 from win32com.client import Dispatch, gencache, VARIANT
+from kazimir import replacer
 
 def main_lfn():
     print('\nLeafan main start!')
@@ -17,6 +18,21 @@ def main_lfn():
             print(property.Name, value1)'''
 
 
+#Класс который описывает размер, допуски квалитеты. И возвращает строку с написанным размером для записи в Наименовании Компас 3D
+def dimension(self):
+    pass
+
+
+def smartRound(part_mass):
+    if part_mass < 0.1:
+        part_mass *= 1000
+        return replacer(round(part_mass, 1)) + " г"
+    elif 0.1 <= part_mass <= 10:
+        return replacer(round(part_mass, 2)) + " кг"
+    elif 10 <= part_mass <= 100:
+        return replacer(round(part_mass, 1)) + " кг"
+    else:
+        return replacer(round(part_mass, 0)) + " кг"
 
 def connectAPI():
 
