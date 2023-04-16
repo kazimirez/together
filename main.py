@@ -28,16 +28,22 @@ def get_property_value(propertyName):
             return propertyVal[1]
 
 
-print(smartRound(get_property_value("Масса")))
 
-
-#Дописать проверку на то, что модель является деталью
 #Дописать проверку на уже заполненную БЧ деталь
 #Дописать сохранение состояния и откат к не_БЧ детали
 #Дописать обработчик допусков
 #Дописать обработчик Квалитетов
-bche_name = get_property_value("Наименование") + "@/" + get_property_value("Материал") + "@/" + "L = 100$m+0,8;-1$"
+
+#Проверка, является ли файл деталью
+if kompas_document.DocumentType != 4:
+    application.MessageBoxEx("Not Part", "Not Part", 0)
+    exit(33)
+
+
+print(smartRound(get_property_value("Масса")))
+
+'''bche_name = get_property_value("Наименование") + "@/" + get_property_value("Материал") + "@/" + "L = 100$m+0,8;-1$"
 #if Bch_Name
 set_property("Форматы листов документа", "БЧ")
 set_property("Наименование", bche_name)
-set_property("Примечание", smartRound(get_property_value("Масса")))
+set_property("Примечание", smartRound(get_property_value("Масса")))'''
