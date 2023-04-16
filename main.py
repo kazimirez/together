@@ -1,5 +1,6 @@
 from leafan import *
 from tkinter import *
+from tkinter import ttk
 #from kazimir import replacer
 
 #Ошибка 32: компас не запущен
@@ -49,12 +50,27 @@ if kompas_document.DocumentType != 4:
     application.MessageBoxEx("Данный макрос работает только с деталью", "Документ не является деталью", 0)
     exit(33)
 
+
+
+#--------------------------------TKinter
+def show_message():
+    label["text"] = entry.get()
+
 root = Tk()
 root.title("Создание БЧ детали")
 root.geometry("300x250")
-label = Label(text="Создание БЧ детали")
+label = Label(text="Вверите допуск")
 label.pack()
+entry = ttk.Entry()
+entry.pack(anchor=NW, padx=6, pady=6)
+btn = ttk.Button(text="Click", command=show_message)
+btn.pack(anchor=NW, padx=6, pady=6)
+
+
 root.mainloop()
+#-------------------------------
+
+
 
 print(smartRound(get_property_value("Масса")))
 
