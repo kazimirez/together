@@ -91,7 +91,6 @@ def connectAPI():
 def kompas_check():
     for proc in psutil.process_iter():
         name = proc.name()
-        print(name)
         if name == "KOMPAS.Exe":
             return True
     return False
