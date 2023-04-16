@@ -1,5 +1,14 @@
 from leafan import *
+from tkinter import *
 #from kazimir import replacer
+
+#Ошибка 32: компас не запущен
+#Ошибка 33: Документ не является деталью
+
+print (kompas_check())
+if kompas_check() != True:
+    exit(32)
+
 
 api5, api7, kompas_document, kompas_object, application, kompas_document_3d = connectAPI()
 main_lfn()
@@ -34,11 +43,18 @@ def get_property_value(propertyName):
 #Дописать обработчик допусков
 #Дописать обработчик Квалитетов
 
+
 #Проверка, является ли файл деталью
 if kompas_document.DocumentType != 4:
-    application.MessageBoxEx("Not Part", "Not Part", 0)
+    application.MessageBoxEx("Данный макрос работает только с деталью", "Документ не является деталью", 0)
     exit(33)
 
+root = Tk()
+root.title("Приложение на Tkinter")
+root.geometry("300x250")
+label = Label(text="Создание БЧ детали")
+label.pack()
+root.mainloop()
 
 print(smartRound(get_property_value("Масса")))
 

@@ -1,4 +1,5 @@
 import pythoncom
+import psutil
 from win32com.client import Dispatch, gencache, VARIANT
 from kazimir import replacer
 
@@ -85,3 +86,12 @@ def connectAPI():
     iDocument3D = kompas_object.ActiveDocument3D()
 
     return api5, api7, kompas_document, kompas_object, application, kompas_document_3d
+
+
+def kompas_check():
+    for proc in psutil.process_iter():
+        name = proc.name()
+        print(name)
+        if name == "KOMPAS.Exe":
+            return True
+    return False
