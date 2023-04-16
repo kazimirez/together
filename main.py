@@ -50,7 +50,7 @@ if kompas_document.DocumentType != 4:
     exit(33)
 
 root = Tk()
-root.title("Приложение на Tkinter")
+root.title("Создание БЧ детали")
 root.geometry("300x250")
 label = Label(text="Создание БЧ детали")
 label.pack()
