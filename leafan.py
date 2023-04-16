@@ -46,10 +46,10 @@ class Dimension:
             return "$m" + x + ";" + y + "$"
 
 
-x = Dimension(23)
-x.upper_deviation = 1
-x.lower_deviation = 1.5
-print(x.print_dim(), x.print_tolerance())
+'''x = Dimension(23)
+#x.upper_deviation = 1
+#x.lower_deviation = 1.5
+print(x.print_dim(), x.print_tolerance())'''
 
 
 def smartRound(part_mass):
