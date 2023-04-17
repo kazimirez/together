@@ -42,7 +42,6 @@ class Dimension:
             x, y = str(self.upper_deviation), str(self.lower_deviation)
             return "\u00B1" + x
         elif self.upper_deviation != self.lower_deviation:
-            self
             x, y = str(self.upper_deviation), str(self.lower_deviation)
             return "$m" + x + ";" + y + "$"
 
