@@ -1,7 +1,8 @@
 def replacer(number):
     return str(number).replace('.', ',')
 
-#Знаешь как это ломает программу?
+
+# Знаешь как это ломает программу?
 if __name__ == '__main__':
     inputnumber = input("enter a number: ")
     b = replacer(inputnumber)
@@ -20,7 +21,6 @@ class Dimension:
         self.it_grade = grade
         self.upper_deviation_sign = '+'
         self.lower_deviation_sign = '-'
-
 
     def print_dim(self):
         x = str(self.dim)
