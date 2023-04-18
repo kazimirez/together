@@ -6,17 +6,18 @@ from tkinter import ttk
 #Ошибка 32: компас не запущен
 #Ошибка 33: Документ не является деталью
 
-print (kompas_check())
-if kompas_check() != True:
-    exit(32)
+if __name__ == '__main__':
+    print (kompas_check())
+    if kompas_check() != True:
+        exit(32)
 
 
-api5, api7, kompas_document, kompas_object, application, kompas_document_3d = connectAPI()
-main_lfn()
+    api5, api7, kompas_document, kompas_object, application, kompas_document_3d = connectAPI()
+    main_lfn()
 
-part7 = kompas_document_3d.TopPart
-propertyMng = api7.IPropertyMng(application)
-propertyKeeper = api7.IPropertyKeeper(part7)
+    part7 = kompas_document_3d.TopPart
+    propertyMng = api7.IPropertyMng(application)
+    propertyKeeper = api7.IPropertyKeeper(part7)
 
 
 def set_property(property_name, value):
@@ -46,28 +47,28 @@ def get_property_value(propertyName):
 
 
 #Проверка, является ли файл деталью
-if kompas_document.DocumentType != 4:
-    application.MessageBoxEx("Данный макрос работает только с деталью", "Документ не является деталью", 0)
-    exit(33)
 
-
+    if kompas_document.DocumentType != 4:
+        application.MessageBoxEx("Данный макрос работает только с деталью", "Документ не является деталью", 0)
+        exit(33)
 
 #--------------------------------TKinter
-def show_message():
-    label["text"] = entry.get()
 
-root = Tk()
-root.title("Создание БЧ детали")
-root.geometry("300x250")
-label = Label(text="Вверите допуск")
-label.pack()
-entry = ttk.Entry()
-entry.pack(anchor=NW, padx=6, pady=6)
-btn = ttk.Button(text="Click", command=show_message)
-btn.pack(anchor=NW, padx=6, pady=6)
+    def show_message():
+        label["text"] = entry.get()
+
+    root = Tk()
+    root.title("Создание БЧ детали")
+    root.geometry("300x250")
+    label = Label(text="Вверите допуск")
+    label.pack()
+    entry = ttk.Entry()
+    entry.pack(anchor=NW, padx=6, pady=6)
+    btn = ttk.Button(text="Click", command=show_message)
+    btn.pack(anchor=NW, padx=6, pady=6)
 
 
-root.mainloop()
+    root.mainloop()
 #-------------------------------
 
 
