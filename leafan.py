@@ -91,12 +91,12 @@ def breckets(string):
     return "(" + string + ")"
 
 
-#"\u00B1"
+'''#"\u00B1"
 x = Dimension(23)
 x.upper_deviation = 1
 x.lower_deviation = 0.2
 x.it_grade = "m8"
-print(x.print_tolerance(True, True))
+print(x.print_tolerance(True, True))'''
 
 
 def smartRound(part_mass):
