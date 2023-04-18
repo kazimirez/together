@@ -38,8 +38,8 @@ class Breckets:
 class Dimension:
     def __init__(self, dim):
         self.dim = dim
-        self.upper_deviation = None
-        self.lower_deviation = None
+        self.upper_deviation = 0
+        self.lower_deviation = 0
         self.it_grade = ''
         self.upper_deviation_sign = "+"
         self.lower_deviation_sign = "-"

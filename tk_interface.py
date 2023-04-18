@@ -1,10 +1,10 @@
 from tkinter import *
 from tkinter import ttk
+from leafan import *
 
-def show_message():
-    x = StringVar()
-    x.set(litera.get())
-    print (x.get())
+def set_dimension():
+    dim = Dimension(dim_main.get())
+    print(dim.print_tolerance(True, True))
 
 if __name__ == '__main__':
     root = Tk()
@@ -29,11 +29,11 @@ if __name__ == '__main__':
     dim_lower_deviation.grid(column=3,row=2, padx=6, pady=6)
 
 
-    btn = ttk.Button(text="Click", command=show_message())
+    btn = ttk.Button(text="Click", command=set_dimension)
     btn.grid(column=2, row=5, padx=6, pady=6)
 
-    x = show_message()
-    print("конец", x.get())
+
+    print("конец")
     root.mainloop()
 
 
