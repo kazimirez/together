@@ -19,13 +19,28 @@ def main_lfn():
             print(property.Name, value1)'''
 
 
+class Breckets:
+    def __init__(self, string):
+        self.flag = False
+        self.string = string
+
+    def get_in_breckets(self):
+        if self.flag == False:
+            self.flag = True
+            self.string = "(" + self.string + ")"
+            return self.string
+        return self.string
+    def in_breckets(self):
+        return self.flag
+
+
 #Класс который описывает размер, допуски квалитеты. И возвращает строку с написанным размером для записи в Наименовании Компас 3D
 class Dimension:
     def __init__(self, dim):
         self.dim = dim
         self.upper_deviation = None
         self.lower_deviation = None
-        self.it_grade = None
+        self.it_grade = 'h9'
         self.upper_deviation_sign = "+"
         self.lower_deviation_sign = "-"
 
@@ -37,19 +52,50 @@ class Dimension:
         x = str(self.it_grade)
         return x
 
-    def print_tolerance(self):
-        if self.upper_deviation == self.lower_deviation and self.upper_deviation != None:
-            x, y = str(self.upper_deviation), str(self.lower_deviation)
-            return "\u00B1" + x
-        elif self.upper_deviation != self.lower_deviation:
-            x, y = str(self.upper_deviation), str(self.lower_deviation)
-            return "$m" + x + ";" + y + "$"
+    def print_tolerance(self, flag_it="True", flag_diviation="True"):
+        #Проверка, если один из допусков равен 0, то он не будет писаться
+        if self.upper_deviation == 0:
+            self.upper_deviation_sign = ""
+            self.upper_deviation = ""
+        if self.lower_deviation == 0:
+            self.lower_deviation_sign = ""
+            self.lower_deviation = ""
+
+        first = str(self.dim)
+        second = str(self.it_grade)
+
+        #Скрываются ненужные значения квалитета
+        if not flag_it:
+            second = ""
+
+        #Выбор типа написания, в одну строчку или два разных значения
+        third = Breckets("$m" + str(self.upper_deviation_sign) + str(self.upper_deviation) + ";" + str(self.lower_deviation_sign) + str(self.lower_deviation) + "$")
+        if self.upper_deviation == self.lower_deviation and self.upper_deviation != 0:
+            if self.upper_deviation_sign != self.lower_deviation_sign:
+                third.string = "\u00B1" + str(self.upper_deviation)
+
+        # Скрываются ненужные значения допуска
+        if not flag_diviation:
+            third.string = ""
+
+        #Заключение в скобки при необходимости
+        if flag_diviation == flag_it == True:
+            third.get_in_breckets()
+
+        #print(third.in_breckets())
+        all = first+second+third.string
+        return (all)
 
 
-'''x = Dimension(23)
-#x.upper_deviation = 1
-#x.lower_deviation = 1.5
-print(x.print_dim(), x.print_tolerance())'''
+def breckets(string):
+    return "(" + string + ")"
+
+
+'''#"\u00B1"
+x = Dimension(23)
+x.upper_deviation = 0.2
+x.lower_deviation = 0.2
+print(x.print_tolerance(True, True))'''
 
 
 def smartRound(part_mass):

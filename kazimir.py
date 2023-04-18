@@ -8,11 +8,11 @@ if __name__ == '__main__':
     b = replacer(inputnumber)
     print(b)
 
-up = input()
+'''up = input()
 low = input()
-grade = input()
+grade = input()'''
 
-
+'''
 class Dimension:
     def __init__(self, dim):
         self.dim = dim
@@ -44,4 +44,4 @@ dim1 = Dimension(50)
 dim1.upper_deviation = 2
 dim1.lower_deviation = 1
 dim1.it_grade = None
-print(dim1.print_dim(), dim1.print_tolerance(), sep="")
+print(dim1.print_dim(), dim1.print_tolerance(), sep="")'''
