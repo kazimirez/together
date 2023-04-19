@@ -40,11 +40,19 @@ if __name__ == '__main__':
                 return propertyVal[1]
 
 
+    def creat_property():
+        pass
+
+
     if kompas_document.DocumentType != 4:
         application.MessageBoxEx("Данный макрос работает только с деталью", "Документ не является деталью", 0)
         exit(33)
 
-    #---------------------------------------------Tk
+    real_name = get_property_value("Наименование")
+    set_property("Наименование", "БЧ")
+
+
+    #----------------------------------------------------------------------------------------------------------------Tk
 
     def set_dimension():
         dim = Dimension(dim_main.get())
@@ -82,14 +90,6 @@ if __name__ == '__main__':
     btn = ttk.Button(text="Click", command=set_dimension)
     btn.grid(column=2, row=5, padx=6, pady=6)
 
-    print("конец")
     root.mainloop()
 
-    #---------------------------------------------
-    print(smartRound(get_property_value("Масса")))
-
-'''    bche_name = get_property_value("Наименование") + "@/" + get_property_value("Материал") + "@/" + "L = " + 
-    #if Bch_Name
-    set_property("Форматы листов документа", "БЧ")
-    set_property("Наименование", bche_name)
-    set_property("Примечание", smartRound(get_property_value("Масса")))'''
+    #------------------------------------------------------------------------------------------------------------------

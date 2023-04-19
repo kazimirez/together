@@ -27,7 +27,7 @@ class Breckets:
         self.string = string
 
     def get_in_breckets(self):
-        if self.flag == False:
+        if not self.flag:
             self.flag = True
             self.string = "(" + self.string + ")"
             return self.string
