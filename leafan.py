@@ -88,7 +88,7 @@ class Dimension:
         all = first+second+third.string
         return (all.replace('.', ','))
 
-    def set_upper_deviation(self, string):
+    def set_upper_deviation(self, string): # Надо исправить, если приходит пустая строка, то выдает ошибку
         self.upper_deviation_sign = string[0]
         self.upper_deviation = string[1:]
 

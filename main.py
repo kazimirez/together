@@ -1,15 +1,13 @@
 from leafan import *
-#from tk_interface import *
 from tkinter import *
 from tkinter import ttk
-#from kazimir import replacer
 
-#Ошибка 32: компас не запущен
-#Ошибка 33: Документ не является деталью
+# Ошибка 32: компас не запущен
+# Ошибка 33: Документ не является деталью
 
 if __name__ == '__main__':
     print(kompas_check())
-    if kompas_check() != True:
+    if not kompas_check():
         exit(32)
 
 
@@ -22,7 +20,6 @@ if __name__ == '__main__':
 
 
     def set_property(property_name, value):
-        i = 0
         for i in range(propertyMng.PropertyCount(kompas_document)):
             property = propertyMng.GetProperty(kompas_document, i)
             if property.Name == property_name:
@@ -40,14 +37,14 @@ if __name__ == '__main__':
                 return propertyVal[1]
 
 
-    def creat_property():
+    def create_property():
         pass
 
-
+    # Проверка на то, что документ является чертежом
     if kompas_document.DocumentType != 4:
         application.MessageBoxEx("Данный макрос работает только с деталью", "Документ не является деталью", 0)
         exit(33)
-
+    # Возвращает имя детали с чертежом
     real_name = to_drawing(get_property_value("Наименование"))
     set_property("Наименование", real_name)
 
@@ -60,7 +57,7 @@ if __name__ == '__main__':
         dim.set_upper_deviation(dim_upper_deviation.get())
         print(dim.print_tolerance(True, True))
         set_property("Форматы листов документа", "БЧ")
-        bche_name = get_property_value("Наименование") + "@/" + get_property_value("Материал") + "@/" + "L = " + dim.print_tolerance(True, True)
+        bche_name = get_property_value("Наименование") + "@/" + get_property_value("Материал") + "@/" + litera.get() + dim.print_tolerance(True, True)
         set_property("Наименование", bche_name)
         set_property("Примечание", smartRound(get_property_value("Масса")))
         exit(23)
@@ -69,26 +66,30 @@ if __name__ == '__main__':
     root.title("Создание БЧ детали")
     root.geometry("600x250+1700+800")
 
-    #label = Label(text="Вверите допуск")
-    #label.pack()
-    litera = ttk.Entry(width=5)
-    litera.grid(column=0, row=1, padx=6, pady=6)
+    label = Label(text="Размер").grid(column=1, row=0, padx=6, pady=6)
+    label2 = Label(text="Класс точности").grid(column=2, row=0, padx=6, pady=6)
+    label3 = Label(text="Допуск").grid(column=3, row=1, padx=6, pady=6)
 
-    dim_main = ttk.Entry()
+    litera = ttk.Entry(width=4, justify=CENTER)
+    litera.grid(column=0, row=1, padx=6, pady=6)
+    litera.insert(0, "L = ")
+
+    dim_main = ttk.Entry(width=7, justify=CENTER)
     dim_main.grid(column=1, row=1, padx=6, pady=6)
 
-    dim_it = ttk.Entry()
+    dim_it = ttk.Entry(width=7, justify=CENTER)
     dim_it.grid(column=2,row=1, padx=6, pady=6)
 
-    dim_upper_deviation = ttk.Entry()
+    dim_upper_deviation = ttk.Entry(width=7, justify=CENTER)
     dim_upper_deviation.grid(column=3,row=0, padx=6, pady=6)
 
-    dim_lower_deviation = ttk.Entry()
+    dim_lower_deviation = ttk.Entry(width=7, justify=CENTER)
     dim_lower_deviation.grid(column=3,row=2, padx=6, pady=6)
 
 
     btn = ttk.Button(text="Click", command=set_dimension)
     btn.grid(column=2, row=5, padx=6, pady=6)
+
 
     root.mainloop()
 
