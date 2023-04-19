@@ -151,5 +151,12 @@ def kompas_check():
         name = proc.name().lower()
         if name == "kompas.exe":
             return True
-    return False
+    return
 
+
+def to_drawing(s=""):
+    i = s.find("@")
+    if s.find("@") == -1:
+        return s
+    s = s[:i]
+    return s
