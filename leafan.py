@@ -2,6 +2,8 @@ import pythoncom
 import psutil
 from win32com.client import Dispatch, gencache, VARIANT
 from kazimir import replacer
+from tkinter import *
+from tkinter import ttk
 
 def main_lfn():
     print('\nLeafan main start!')
@@ -84,18 +86,28 @@ class Dimension:
 
         #print(third.in_breckets())
         all = first+second+third.string
-        return (all)
+        return (all.replace('.', ','))
+
+    def set_upper_deviation(self, string):
+        self.upper_deviation_sign = string[0]
+        self.upper_deviation = string[1:]
+
+    def set_lower_deviation(self, string):
+        self.lower_deviation_sign = string[0]
+        self.lower_deviation = string[1:]
 
 
 def breckets(string):
     return "(" + string + ")"
 
 
-'''#"\u00B1"
-x = Dimension(23)
-x.upper_deviation = 1
-x.lower_deviation = 0.2
-x.it_grade = "m8"
+#"\u00B1"
+'''x = Dimension(2330.5)
+x.set_upper_deviation("-1.21")
+x.set_lower_deviation("-1.21")
+x.it_grade = ""
+print(x.upper_deviation_sign)
+print(x.upper_deviation)
 print(x.print_tolerance(True, True))'''
 
 
@@ -136,8 +148,8 @@ def connectAPI():
 
 def kompas_check():
     for proc in psutil.process_iter():
-        name = proc.name()
-        #print(name)
-        if name == "KOMPAS.Exe" or "KOMPAS.exe":
+        name = proc.name().lower()
+        if name == "kompas.exe":
             return True
     return False
+
