@@ -42,13 +42,15 @@ if __name__ == '__main__':
     if kompas_document.DocumentType != 4:
         application.MessageBoxEx("Данный макрос работает только с деталью", "Документ не является деталью", 0)
         exit(33)
-    # Возвращает имя детали с чертежом
+
 
 
 
     #----------------------------------------------------------------------------------------------------------------Tk
 
     def set_dimension():
+        real_name = to_drawing(get_property_value("Наименование"))
+        set_property("Наименование", real_name)
         dim = Dimension(dim_main.get())
         dim.set_lower_deviation(dim_lower_deviation.get())
         dim.set_upper_deviation(dim_upper_deviation.get())
