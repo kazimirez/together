@@ -43,8 +43,7 @@ if __name__ == '__main__':
         application.MessageBoxEx("Данный макрос работает только с деталью", "Документ не является деталью", 0)
         exit(33)
     # Возвращает имя детали с чертежом
-    real_name = to_drawing(get_property_value("Наименование"))
-    set_property("Наименование", real_name)
+
 
 
     #----------------------------------------------------------------------------------------------------------------Tk
@@ -60,12 +59,19 @@ if __name__ == '__main__':
         set_property("Примечание", smartRound(get_property_value("Масса")))
         exit(23)
 
+    def return_drawing():
+        real_name = to_drawing(get_property_value("Наименование"))
+        set_property("Наименование", real_name)
+        set_property("Примечание", "")
+        set_property("Форматы листов документа", "")
+        exit(24)
+
     #root = ThemedTk(theme="scid themes")
     root = Tk()
     s = ttk.Style()
     s.theme_use('clam')
     root.title("Создание БЧ детали")
-    root.geometry("600x250+1700+800")
+    root.geometry("+1700+800")
     print(s.theme_use())
     label = Label(text="Размер").grid(column=1, row=0, padx=6, pady=6)
     label2 = Label(text="Класс точности").grid(column=2, row=0, padx=6, pady=6)
@@ -88,8 +94,11 @@ if __name__ == '__main__':
     dim_lower_deviation.grid(column=3,row=2, padx=6, pady=6)
 
 
-    btn = ttk.Button(text="Click", command=set_dimension)
+    btn = ttk.Button(text="БЧ", command=set_dimension)
     btn.grid(column=2, row=5, padx=6, pady=6)
+
+    btn2 = ttk.Button(text="Чертежная", command=return_drawing)
+    btn2.grid(column=4, row=5, padx=6, pady=6)
 
 
     root.mainloop()
