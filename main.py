@@ -1,6 +1,4 @@
 from leafan import *
-from tkinter import *
-from tkinter import ttk
 
 # Ошибка 32: компас не запущен
 # Ошибка 33: Документ не является деталью
@@ -62,10 +60,13 @@ if __name__ == '__main__':
         set_property("Примечание", smartRound(get_property_value("Масса")))
         exit(23)
 
+    #root = ThemedTk(theme="scid themes")
     root = Tk()
+    s = ttk.Style()
+    s.theme_use('clam')
     root.title("Создание БЧ детали")
     root.geometry("600x250+1700+800")
-
+    print(s.theme_use())
     label = Label(text="Размер").grid(column=1, row=0, padx=6, pady=6)
     label2 = Label(text="Класс точности").grid(column=2, row=0, padx=6, pady=6)
     label3 = Label(text="Допуск").grid(column=3, row=1, padx=6, pady=6)

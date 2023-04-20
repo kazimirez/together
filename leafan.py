@@ -4,6 +4,8 @@ from win32com.client import Dispatch, gencache, VARIANT
 from kazimir import replacer
 from tkinter import *
 from tkinter import ttk
+from ttkthemes import ThemedTk
+
 
 def main_lfn():
     print('\nLeafan main start!')
@@ -55,22 +57,23 @@ class Dimension:
         return x
 
     def print_tolerance(self, flag_it="True", flag_diviation="True"):
-        #Проверка, если один из допусков равен 0, то он не будет писаться
-        if self.upper_deviation == 0:
+        # Проверка, если один из допусков равен 0, то он не будет писаться
+        if self.upper_deviation == 0 or self.upper_deviation == "0":
             self.upper_deviation_sign = ""
             self.upper_deviation = ""
-        if self.lower_deviation == 0:
+        if self.lower_deviation == 0 or self.lower_deviation == "0":
             self.lower_deviation_sign = ""
             self.lower_deviation = ""
 
         first = str(self.dim)
         second = str(self.it_grade)
 
-        #Скрываются ненужные значения квалитета
+        # Скрываются ненужные значения квалитета
         if not flag_it:
             second = ""
 
-        #Выбор типа написания, в одну строчку или два разных значения
+
+        # Выбор типа написания, в одну строчку или два разных значения
         third = Breckets("$m" + str(self.upper_deviation_sign) + str(self.upper_deviation) + ";" + str(self.lower_deviation_sign) + str(self.lower_deviation) + "$")
         if self.upper_deviation == self.lower_deviation and self.upper_deviation != 0:
             if self.upper_deviation_sign != self.lower_deviation_sign:
@@ -80,7 +83,7 @@ class Dimension:
         if not flag_diviation:
             third.string = ""
 
-        #Заключение в скобки при необходимости
+        # Заключение в скобки при необходимости
         if flag_diviation == flag_it == True and second != "":
             third.get_in_breckets()
 
@@ -89,12 +92,30 @@ class Dimension:
         return (all.replace('.', ','))
 
     def set_upper_deviation(self, string): # Надо исправить, если приходит пустая строка, то выдает ошибку
-        self.upper_deviation_sign = string[0]
-        self.upper_deviation = string[1:]
+        if len(string) > 0:
+            if string[0] == "+" or string[0] == "-":
+                self.upper_deviation_sign = string[0]
+                self.upper_deviation = string[1:]
+            elif string == "0":
+                self.upper_deviation_sign = ""
+                self.upper_deviation = "0"
+            else:
+                self.upper_deviation_sign = "+"
+                self.upper_deviation = string
+        return
 
     def set_lower_deviation(self, string):
-        self.lower_deviation_sign = string[0]
-        self.lower_deviation = string[1:]
+        if len(string) > 0:
+            if string[0] == "+" or string[0] == "-":
+                self.lower_deviation_sign = string[0]
+                self.lower_deviation = string[1:]
+            elif string == "0":
+                self.lower_deviation_sign = ""
+                self.lower_deviation = "0"
+            else:
+                self.lower_deviation_sign = "+"
+                self.lower_deviation = string
+        return
 
 
 def breckets(string):
